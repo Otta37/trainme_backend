@@ -71,7 +71,7 @@ app.get("/is_auth", verifyToken, (req, res) => {
 }) */
 
 app.get("/schede/:id_scheda", verifyToken, (req, res) => {
-  const id_utente = res.auth.utente.id;
+  const id_utente = res.auth.user.id;
   const { id_scheda } = req.params;
 
   db.query(
@@ -82,7 +82,7 @@ app.get("/schede/:id_scheda", verifyToken, (req, res) => {
 });
 
 app.get("/schede", verifyToken, (req, res) => {
-  const id_utente = res.auth.utente.id;
+  const id_utente = res.auth.user.id;
   db.query(
     "SELECT * FROM scheda WHERE id_utente = ?",
     [id_utente],
